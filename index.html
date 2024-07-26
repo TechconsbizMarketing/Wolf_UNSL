@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open App</title>
+  <script>
+   function openAppOrRedirect() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera
+    var appLinkAndroid =
+     'https://play.google.com/store/apps/details?id=com.wolfapprove.techconsbiz.memorandum&hl=th' // Deep link สำหรับ Android
+    var universalLinkIOS = 'https://apps.apple.com/us/app/your-app/id1336818366' // Universal Link สำหรับ iOS
+    var playStoreLink =
+     'https://play.google.com/store/apps/details?id=com.wolfapprove.techconsbiz.memorandum&hl=th'
+    var appStoreLink = 'https://apps.apple.com/us/app/your-app/id1336818366'
+    var storeLink = ''
+
+    // ตรวจสอบว่าเป็น Android หรือ iOS
+    if (/android/i.test(userAgent)) {
+     storeLink = playStoreLink
+     var start = new Date().getTime()
+     window.location = appLinkAndroid
+
+     // ตรวจสอบหลังจาก 2 วินาที ถ้าผู้ใช้ยังอยู่บนหน้าเว็บ (แสดงว่าแอปไม่ได้เปิด) ให้เปลี่ยนเส้นทางไปที่ร้านค้า
+     setTimeout(function () {
+      if (new Date().getTime() - start < 2000) {
+       window.location = storeLink
+      }
+     }, 2000)
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+     storeLink = appStoreLink
+     var start = new Date().getTime()
+     window.location = universalLinkIOS
+
+     // ตรวจสอบหลังจาก 2 วินาที ถ้าผู้ใช้ยังอยู่บนหน้าเว็บ (แสดงว่าแอปไม่ได้เปิด) ให้เปลี่ยนเส้นทางไปที่ร้านค้า
+     setTimeout(function () {
+      if (new Date().getTime() - start < 2000) {
+       window.location = storeLink
+      }
+     }, 2000)
+    } else {
+     document.getElementById('message').innerHTML =
+      'Please visit this page on a mobile device to download the app.'
+    }
+   }
+  </script>
+ </head>
+ <body onload="openAppOrRedirect()">
+  <p id="message">Trying to open the app...</p>
+ </body>
+</html>
