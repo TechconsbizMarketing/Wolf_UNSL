@@ -1,13 +1,11 @@
 {
- "applinks": {
-  "apps": [],
-  "details": [
-   {
-    "appID": "Y8YPC676J8.com.TechConsBiz.Memorandeum",
-    "paths": [
-     "*"
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "Y8YPC676J8.com.TechConsBiz.Memorandeum",
+        "paths": ["*"]
+      }
     ]
-   }
-  ]
- }
+  }
 }
