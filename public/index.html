@@ -3,7 +3,50 @@
  <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Open App</title>
+  <title>Wolf Approve</title>
+  <style>
+   body {
+    font-family: Kanit, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #f8f8f8;
+   }
+   h1 {
+    color: #333;
+   }
+   .container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 40px auto;
+   }
+   .button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+   }
+   .button:hover {
+    background-color: #0056b3;
+   }
+   .message {
+    margin-top: 20px;
+    color: #555;
+   }
+   img {
+    max-width: 100px;
+    margin: 20px 0;
+   }
+  </style>
   <script>
    function openAppOrRedirect() {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera
@@ -43,9 +86,28 @@
       'Please visit this page on a mobile device to download the app.'
     }
    }
+
+   function redirectToApp() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera
+    var justLink = 'https://wolf-approve-redirect-app.web.app/'
+
+    if (/android/i.test(userAgent)) {
+     window.location = justLink
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+     window.location = justLink
+    } else {
+     document.getElementById('message').innerHTML =
+      'Please visit this page on a mobile device to download the app.'
+    }
+   }
   </script>
  </head>
  <body onload="openAppOrRedirect()">
-  <p id="message">Trying to open the app...</p>
+  <div class="container">
+   <img src="./assets/wolf-logo.png" alt="TheWOLF" />
+   <h1>Welcome to Wolf Approve</h1>
+   <p id="message">Trying to open the Wolf app...</p>
+   <button class="button" onclick="redirectToApp()">Open Wolf App</button>
+  </div>
  </body>
 </html>
